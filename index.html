@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payroll Shouldn't Take Your Entire Friday - Interactive Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="quiz-container">
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+            <span class="progress-text" id="progressText">Question 1 of 11</span>
+        </div>
+
+        <!-- Quiz Header -->
+        <header class="quiz-header">
+            <h1>Is Payroll Eating Your Friday?</h1>
+            <p class="subtitle">Find out how much time you could save (and what your payroll personality says about you)</p>
+        </header>
+
+        <!-- Quiz Content -->
+        <main class="quiz-content" id="quizContent">
+            <!-- Welcome Screen -->
+            <div class="quiz-section active" id="welcomeScreen">
+                <div class="welcome-content">
+                    <h2>Ready to Reclaim Your Fridays?</h2>
+                    <p>Take this 2-minute quiz to discover:</p>
+                    <ul class="benefits-list">
+                        <li>✅ How much time you're really losing to payroll</li>
+                        <li>✅ Your unique "Payroll Personality"</li>
+                        <li>✅ Exactly how many hours you could save each month</li>
+                        <li>✅ A personalized solution for your business size</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="startQuiz()">Start the Quiz</button>
+                    <p class="privacy-note">🔒 Your information is 100% secure and never shared</p>
+                </div>
+            </div>
+
+            <!-- Question Container -->
+            <div class="quiz-section" id="questionContainer" style="display: none;">
+                <div class="question-content">
+                    <h2 id="questionTitle"></h2>
+                    <div id="answerOptions" class="answer-options"></div>
+                </div>
+                <div class="navigation-buttons">
+                    <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()" style="display: none;">Previous</button>
+                    <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>Next</button>
+                </div>
+            </div>
+
+            <!-- Lead Capture Form -->
+            <div class="quiz-section" id="leadForm" style="display: none;">
+                <div class="form-content">
+                    <h2>Almost There! Get Your Personalized Results</h2>
+                    <p>See your Payroll Personality and time-saving recommendations</p>
+                    <form id="leadCaptureForm" onsubmit="submitLeadForm(event)">
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Work Email*" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="firstName" name="firstName" placeholder="First Name*" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="companyName" name="companyName" placeholder="Company Name*" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="phone" name="phone" placeholder="Phone (Optional - for priority support)">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Get My Results</button>
+                        <p class="privacy-note">🔒 We respect your privacy. No spam, ever.</p>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Results Screen -->
+            <div class="quiz-section" id="resultsScreen" style="display: none;">
+                <div class="results-content">
+                    <div class="personality-badge" id="personalityBadge">
+                        <img src="" alt="Personality Badge" id="badgeImage">
+                        <h2 id="personalityTitle"></h2>
+                    </div>
+                    <div class="results-details">
+                        <div class="score-summary">
+                            <h3>Your Payroll Pain Score: <span id="painScore"></span></h3>
+                            <p id="personalityDescription"></p>
+                        </div>
+                        <div class="time-savings">
+                            <h3>Potential Time Savings</h3>
+                            <div class="savings-metric">
+                                <span class="big-number" id="hoursSaved">0</span>
+                                <span class="metric-label">Hours/Month</span>
+                            </div>
+                        </div>
+                        <div class="pain-points">
+                            <h3>Your Biggest Challenges:</h3>
+                            <ul id="challengesList"></ul>
+                        </div>
+                        <div class="cta-section">
+                            <button class="btn btn-primary btn-large" id="mainCTA" onclick="bookDemo()">Get Started</button>
+                            <p class="urgency-text" id="urgencyMessage"></p>
+                        </div>
+                        <div class="social-sharing">
+                            <h4>Share Your Payroll Personality:</h4>
+                            <div class="share-buttons">
+                                <button class="share-btn" onclick="shareOnLinkedIn()">Share on LinkedIn</button>
+                                <button class="share-btn" onclick="shareOnTwitter()">Share on Twitter</button>
+                                <button class="share-btn" onclick="shareViaEmail()">Email Results</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Exit Intent Popup -->
+        <div class="popup-overlay" id="exitPopup" style="display: none;">
+            <div class="popup-content">
+                <button class="close-popup" onclick="closeExitPopup()">×</button>
+                <h3>Wait! Get the Quick Version</h3>
+                <p>No time for the full quiz? Answer just 3 questions to get instant insights!</p>
+                <button class="btn btn-primary" onclick="startQuickQuiz()">Take 30-Second Quiz</button>
+            </div>
+        </div>
+
+        <!-- Encouragement Popup -->
+        <div class="popup-overlay" id="encouragementPopup" style="display: none;">
+            <div class="popup-content small">
+                <h3>🚀 Help is on the way!</h3>
+                <p>We see you're struggling with payroll. Let's fix that!</p>
+                <button class="btn btn-primary" onclick="closeEncouragementPopup()">Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="quiz.js"></script>
+</body>
+</html>
