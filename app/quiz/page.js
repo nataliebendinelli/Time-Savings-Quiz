@@ -92,8 +92,8 @@ export default function QuizPage() {
 
     if (totalScore >= 16) {
       personality = "The Payroll Prisoner"
-      description = "🚨 PAYROLL EMERGENCY DETECTED! You're losing 15+ hours every month to payroll chaos. That's almost two full workdays! Immediate rescue required - let's get you free TODAY."
-      ctaText = "URGENT: Emergency Payroll Rescue Demo"
+      description = "🚨 PAYROLL EMERGENCY DETECTED! You're losing 15+ hours every month to payroll chaos. That's almost two full workdays! It's time to break free from this payroll prison."
+      ctaText = "URGENT: Schedule Emergency Payroll Rescue"
       urgencyMessage = "Critical: You're losing 15+ hours/month"
       hoursSaved = 15
     } else if (totalScore >= 12) {
@@ -195,9 +195,19 @@ export default function QuizPage() {
               <span className="metric-label">Hours/Month You Could Save</span>
             </div>
             <div className="metric-card">
-              <span className="metric-number">${results.hoursSaved * 50}</span>
+              <span className="metric-number">${results.hoursSaved * 85}</span>
               <span className="metric-label">Monthly Value of Time Saved</span>
             </div>
+          </div>
+
+          <div className="cta-section" style={{ marginBottom: '2rem' }}>
+            <button 
+              className="btn btn-primary btn-large"
+              onClick={() => window.location.href = 'https://calendly.com/accrue-sales/demo'}
+            >
+              {results.ctaText}
+            </button>
+            <p className="urgency-message">{results.urgencyMessage}</p>
           </div>
 
           {results.painPoints.length > 0 && (
@@ -210,16 +220,6 @@ export default function QuizPage() {
               </ul>
             </div>
           )}
-
-          <div className="cta-section">
-            <button 
-              className="btn btn-primary btn-large"
-              onClick={() => window.location.href = 'https://calendly.com/accrue-sales/demo'}
-            >
-              {results.ctaText}
-            </button>
-            <p className="urgency-message">{results.urgencyMessage}</p>
-          </div>
 
           <div className="share-section">
             <h4>Share Your Payroll Personality:</h4>
