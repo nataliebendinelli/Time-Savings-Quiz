@@ -182,59 +182,44 @@ export default function QuizPage() {
         </nav>
         
         <div className="results-container">
-          <div className="results-layout">
-            <div className="results-left">
-              <div className="personality-badge">
-                <h1>{results.personality}</h1>
-                <div className="score-badge">Score: {results.score}</div>
-              </div>
-              
-              <p className="personality-description">{results.description}</p>
-              
-              <div className="results-metrics">
-                <div className="metric-card">
-                  <span className="metric-number">{results.hoursSaved}</span>
-                  <span className="metric-label">Hours/Month You Could Save</span>
-                </div>
-                <div className="metric-card">
-                  <span className="metric-number">${results.hoursSaved * 85}</span>
-                  <span className="metric-label">Monthly Value of Time Saved</span>
-                </div>
-              </div>
+          <div className="personality-badge">
+            <h1>{results.personality}</h1>
+            <div className="score-badge">Score: {results.score}</div>
+          </div>
+          
+          <p className="personality-description">{results.description}</p>
+          
+          <div className="results-metrics">
+            <div className="metric-card">
+              <span className="metric-number">{results.hoursSaved}</span>
+              <span className="metric-label">Hours/Month You Could Save</span>
             </div>
-
-            <div className="results-right">
-              <div className="cta-section-prominent">
-                <div className="cta-badge">🚨 LIMITED TIME</div>
-                <h2>Claim Your Free Payroll Rescue Session</h2>
-                <p className="cta-subtitle">Stop wasting ${results.hoursSaved * 85}/month on manual payroll</p>
-                <button 
-                  className="btn-cta-hero pulse-animation"
-                  onClick={() => window.location.href = 'https://calendly.com/accrue-sales/demo'}
-                >
-                  <span className="btn-text">{results.ctaText}</span>
-                  <span className="btn-arrow">→</span>
-                </button>
-                <p className="urgency-message">{results.urgencyMessage}</p>
-                <div className="cta-benefits">
-                  <div className="benefit-item">✓ Free 30-minute consultation</div>
-                  <div className="benefit-item">✓ Custom time-savings analysis</div>
-                  <div className="benefit-item">✓ No obligation demo</div>
-                </div>
-              </div>
-
-              {results.painPoints.length > 0 && (
-                <div className="pain-points-compact">
-                  <h3>Your Challenges:</h3>
-                  <ul>
-                    {results.painPoints.map((point, idx) => (
-                      <li key={idx}>{point}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+            <div className="metric-card">
+              <span className="metric-number">${results.hoursSaved * 85}</span>
+              <span className="metric-label">Monthly Value of Time Saved</span>
             </div>
           </div>
+
+          <div className="cta-section" style={{ marginBottom: '2rem' }}>
+            <button 
+              className="btn btn-primary btn-large"
+              onClick={() => window.location.href = 'https://calendly.com/accrue-sales/demo'}
+            >
+              {results.ctaText}
+            </button>
+            <p className="urgency-message">{results.urgencyMessage}</p>
+          </div>
+
+          {results.painPoints.length > 0 && (
+            <div className="pain-points">
+              <h3>Your Biggest Challenges:</h3>
+              <ul>
+                {results.painPoints.map((point, idx) => (
+                  <li key={idx}>{point}</li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           <div className="share-section">
             <h4>Share Your Payroll Personality:</h4>
