@@ -7,123 +7,52 @@ import { useRouter } from 'next/navigation'
 const quizQuestions = [
   {
     id: 1,
-    phase: 1,
-    title: "How many employees do you run payroll for?",
+    title: "How do you currently handle payroll for your business?",
     options: [
-      { text: "1-10 employees", points: 2 },
-      { text: "11-50 employees", points: 3 },
-      { text: "51-100 employees", points: 4 },
-      { text: "100+ employees", points: 1, enterprise: true }
+      { text: "Manually with spreadsheets and calculators", points: 4 },
+      { text: "Basic payroll software but lots of manual data entry", points: 3 },
+      { text: "Partially automated system with some manual steps", points: 2 },
+      { text: "Fully automated payroll system", points: 1 }
     ]
   },
   {
     id: 2,
-    phase: 1,
-    title: "How much of your Friday currently gets eaten up by payroll?",
+    title: "How much time do you (or your team) spend on payroll each pay period?",
     options: [
-      { text: "Just a few minutes", points: 1 },
-      { text: "Half the day", points: 2 },
-      { text: "The entire afternoon", points: 3, showEncouragement: true },
-      { text: "I'm still doing it on Saturday morning", points: 4, showEncouragement: true }
+      { text: "More than 8 hours", points: 4 },
+      { text: "4-8 hours", points: 3 },
+      { text: "2-4 hours", points: 2 },
+      { text: "Less than 2 hours", points: 1 }
     ]
   },
   {
     id: 3,
-    phase: 1,
-    title: "When it comes to choosing payroll software, you are:",
+    title: "How often do you have to fix payroll mistakes or handle employee questions about their pay?",
     options: [
-      { text: "The final decision maker", points: 4 },
-      { text: "A key influencer in the decision", points: 3 },
-      { text: "I evaluate and recommend solutions", points: 2 },
-      { text: "I just use whatever we have", points: 1 }
+      { text: "Every pay period - it's a constant headache", points: 4 },
+      { text: "A few times per month", points: 3 },
+      { text: "Occasionally, maybe once a month", points: 2 },
+      { text: "Rarely, our payroll is usually accurate", points: 1 }
     ]
   },
   {
     id: 4,
-    phase: 2,
-    title: "What's your current payroll setup?",
+    title: "How do you handle payroll taxes and compliance reporting?",
     options: [
-      { text: "Excel spreadsheets and prayer", points: 4 },
-      { text: "Basic payroll software that crashes", points: 3 },
-      { text: "Decent software with quirks", points: 2 },
-      { text: "We outsource it completely", points: 1 }
+      { text: "Manually calculate and file everything myself", points: 4 },
+      { text: "Use basic software but still need to double-check everything", points: 3 },
+      { text: "Mostly automated but requires some manual oversight", points: 2 },
+      { text: "Fully automated with automatic tax filing and compliance", points: 1 }
     ]
   },
   {
     id: 5,
-    phase: 2,
-    title: "Your employees are asking about their paychecks and you're still processing. Your response:",
+    title: "How do your employees access their pay stubs, tax forms, and payroll information?",
     options: [
-      { text: "Give me 5 minutes!", points: 1 },
-      { text: "Check back Monday", points: 2 },
-      { text: "Nervous laughter", points: 3 },
-      { text: "Hide behind the office plant", points: 4 }
-    ]
-  },
-  {
-    id: 6,
-    phase: 2,
-    title: "Which payroll task makes you want to hide under your desk?",
-    options: [
-      { text: "Calculating hours and overtime", points: 2 },
-      { text: "Tax withholdings and compliance", points: 3 },
-      { text: "Benefits deductions and allocations", points: 2 },
-      { text: "All of the above plus more", points: 4 }
-    ]
-  },
-  {
-    id: 7,
-    phase: 3,
-    title: "If you could get your Friday afternoons back, what would you do instead?",
-    options: [
-      { text: "Start the weekend early", points: 2 },
-      { text: "Focus on growing the business", points: 1 },
-      { text: "Actually eat lunch like a human", points: 3 },
-      { text: "Remember what sunlight looks like", points: 4 }
-    ]
-  },
-  {
-    id: 8,
-    phase: 3,
-    title: "Your current payroll process moves at the speed of:",
-    options: [
-      { text: "A motivated sloth", points: 2 },
-      { text: "Molasses in winter", points: 3 },
-      { text: "Government bureaucracy", points: 4 },
-      { text: "My enthusiasm on Monday morning", points: 4 }
-    ]
-  },
-  {
-    id: 9,
-    phase: 3,
-    title: "Your payroll spreadsheet crashes right before deadline. You become:",
-    options: [
-      { text: "A detective hunting for backup files", points: 2 },
-      { text: "The Hulk, but with calculators", points: 3 },
-      { text: "A time traveler trying to undo this moment", points: 4 },
-      { text: "Someone seriously considering interpretive dance as a career", points: 4 }
-    ]
-  },
-  {
-    id: 10,
-    phase: 4,
-    title: "Your dream payroll system would be:",
-    options: [
-      { text: "One-click simple", points: 2 },
-      { text: "Completely automated", points: 3 },
-      { text: "Error-proof and compliant", points: 2 },
-      { text: "All of the above, delivered yesterday", points: 4 }
-    ]
-  },
-  {
-    id: 11,
-    phase: 4,
-    title: "When are you looking to solve your payroll problems?",
-    options: [
-      { text: "Right now - this is urgent", points: 4, highUrgency: true },
-      { text: "Within the next 3 months", points: 3 },
-      { text: "Sometime this year", points: 2 },
-      { text: "Eventually, when I have time", points: 1 }
+      { text: "They have to ask me for everything - I print/email manually", points: 4 },
+      { text: "I email them documents each pay period", points: 3 },
+      { text: "They can access some things online but often need my help", points: 2 },
+      { text: "They have full self-service access to everything they need", points: 1 }
     ]
   }
 ]
@@ -137,35 +66,13 @@ export default function QuizPage() {
   const [showLeadForm, setShowLeadForm] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showEncouragement, setShowEncouragement] = useState(false)
-  const [companySize, setCompanySize] = useState('')
-  const [authority, setAuthority] = useState('')
-  const [timeline, setTimeline] = useState('')
 
   const handleAnswer = (questionId, answer) => {
     const newAnswers = { ...answers, [questionId]: answer }
     setAnswers(newAnswers)
 
-    // Track special answers
-    if (questionId === 1) {
-      const sizeMap = {
-        "1-10 employees": "1-10",
-        "11-50 employees": "11-50",
-        "51-100 employees": "51-100",
-        "100+ employees": "100+"
-      }
-      setCompanySize(sizeMap[answer.text] || '')
-    }
-
-    if (questionId === 3) {
-      setAuthority(answer.text)
-    }
-
-    if (questionId === 11) {
-      setTimeline(answer.text)
-    }
-
-    // Show encouragement popup for high-pain answers
-    if (answer.showEncouragement) {
+    // Show encouragement popup for high-pain answers (4 points)
+    if (answer.points === 4) {
       setShowEncouragement(true)
       setTimeout(() => setShowEncouragement(false), 3000)
     }
@@ -186,45 +93,41 @@ export default function QuizPage() {
       totalScore += answer.points
     })
 
-    // Apply multipliers
-    if (companySize === "11-50") totalScore *= 1.2
-    if (authority.includes("decision maker")) totalScore *= 1.3
-    if (timeline.includes("Right now")) totalScore *= 1.4
-
-    // Determine personality and messaging
+    // Determine personality and messaging based on new scoring
     let personality, description, ctaText, urgencyMessage, hoursSaved
 
-    if (totalScore <= 20) {
-      personality = "The Payroll Prodigy"
-      description = "You're already efficient, but efficiency can always level up! While you've got a handle on payroll, there are still opportunities to reclaim precious time."
-      ctaText = "See How the Pros Shave Off Those Last Few Minutes"
-      urgencyMessage = "Optimize your already smooth process"
-      hoursSaved = 5
-    } else if (totalScore <= 30) {
-      personality = "The Friday Fighter"
-      description = "You're battling payroll like a warrior, but even warriors need better weapons! Your determination is admirable, but it's time to upgrade your arsenal."
-      ctaText = "Upgrade Your Payroll Arsenal - Free Demo"
-      urgencyMessage = "Stop fighting and start winning"
-      hoursSaved = 12
-    } else if (totalScore <= 40) {
-      personality = "The Spreadsheet Survivor"
-      description = "You've survived payroll purgatory - time for your great escape! You've proven you can handle anything, but you shouldn't have to."
-      ctaText = "Break Free From Spreadsheet Prison - 30-Day Trial"
-      urgencyMessage = "Your escape plan is ready"
-      hoursSaved = 20
-    } else {
+    if (totalScore >= 16) {
       personality = "The Payroll Prisoner"
-      description = "🚨 PAYROLL EMERGENCY DETECTED! You're losing entire days to payroll chaos. Immediate rescue required - let's get you free TODAY."
+      description = "🚨 PAYROLL EMERGENCY DETECTED! You're losing 15+ hours every month to payroll chaos. That's almost two full workdays! Immediate rescue required - let's get you free TODAY."
       ctaText = "URGENT: Emergency Payroll Rescue Demo"
-      urgencyMessage = "Critical: Schedule your rescue within 24 hours"
-      hoursSaved = 30
+      urgencyMessage = "Critical: You're losing 15+ hours/month"
+      hoursSaved = 15
+    } else if (totalScore >= 12) {
+      personality = "The Spreadsheet Struggler"
+      description = "You're fighting an uphill battle with spreadsheets and manual processes. You're losing 8-15 hours every month - that's a full workday or more! Time to upgrade your tools."
+      ctaText = "Break Free From Spreadsheet Prison - Free Demo"
+      urgencyMessage = "You're losing 8-15 hours/month to payroll"
+      hoursSaved = 12
+    } else if (totalScore >= 8) {
+      personality = "The Semi-Streamlined"
+      description = "You've got some systems in place, but there's still room for improvement. You're losing 4-8 hours monthly that could be spent growing your business."
+      ctaText = "Optimize Your Payroll Process - See How"
+      urgencyMessage = "Save 4-8 hours/month with full automation"
+      hoursSaved = 6
+    } else {
+      personality = "The Payroll Pro"
+      description = "You're already optimized! Your payroll process is running smoothly with minimal time investment. Still, there might be a few final optimizations worth exploring."
+      ctaText = "See Advanced Optimization Tips"
+      urgencyMessage = "Already saving time - optimize even further"
+      hoursSaved = 2
     }
 
-    // Identify main pain points
-    if (answers[6]?.text.includes("Tax")) painPoints.push("Tax compliance nightmares")
-    if (answers[6]?.text.includes("All of the above")) painPoints.push("Complete payroll overwhelm")
-    if (answers[4]?.text.includes("Excel")) painPoints.push("Manual spreadsheet chaos")
-    if (answers[2]?.points >= 3) painPoints.push("Entire Fridays lost to payroll")
+    // Identify main pain points based on answers
+    if (answers[1]?.text.includes("Manually with spreadsheets")) painPoints.push("Manual spreadsheet chaos")
+    if (answers[2]?.text.includes("More than 8 hours")) painPoints.push("Excessive time investment each pay period")
+    if (answers[3]?.text.includes("Every pay period")) painPoints.push("Constant payroll errors and corrections")
+    if (answers[4]?.text.includes("Manually calculate")) painPoints.push("Manual tax calculations and compliance risks")
+    if (answers[5]?.text.includes("ask me for everything")) painPoints.push("No employee self-service capabilities")
 
     return {
       score: Math.round(totalScore),
@@ -233,10 +136,7 @@ export default function QuizPage() {
       ctaText,
       urgencyMessage,
       hoursSaved,
-      painPoints,
-      companySize,
-      authority,
-      timeline
+      painPoints
     }
   }
 
@@ -432,8 +332,8 @@ export default function QuizPage() {
 
       {showEncouragement && (
         <div className="encouragement-popup">
-          <h3>🚀 Help is on the way!</h3>
-          <p>We see you're struggling with payroll. Let's fix that!</p>
+          <h3>⏰ That's a lot of wasted time!</h3>
+          <p>We can help you reclaim those hours. Keep going!</p>
         </div>
       )}
     </div>
