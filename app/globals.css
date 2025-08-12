@@ -607,30 +607,60 @@ body {
 
 .personality-badge {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  padding: 3rem 2rem 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+}
+
+.personality-badge::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: shimmer 4s infinite;
 }
 
 .personality-badge h1 {
-  font-size: 3rem;
-  color: var(--color-primary);
+  font-size: 3.5rem;
+  color: white;
   margin-bottom: 1rem;
+  font-weight: 800;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  letter-spacing: -1px;
 }
 
 .score-badge {
   display: inline-block;
-  background: var(--color-primary);
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
   color: white;
-  padding: 0.5rem 1.5rem;
-  border-radius: 20px;
-  font-weight: 600;
+  padding: 0.75rem 2rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .personality-description {
   font-size: 1.25rem;
   color: var(--color-text);
   text-align: center;
-  margin-bottom: 3rem;
+  margin: -1rem auto 3rem;
   line-height: 1.8;
+  max-width: 800px;
+  padding: 2rem;
+  background: linear-gradient(135deg, #fff5f5 0%, #ffe0e0 100%);
+  border-radius: 16px;
+  border-left: 4px solid #ff4444;
+  box-shadow: 0 4px 6px rgba(255, 68, 68, 0.1);
 }
 
 .results-metrics {
@@ -641,53 +671,101 @@ body {
 }
 
 .metric-card {
-  background: white;
-  padding: 2rem;
-  border-radius: 12px;
+  background: linear-gradient(135deg, white 0%, #f8f9fa 100%);
+  padding: 2.5rem;
+  border-radius: 20px;
   text-align: center;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.metric-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+}
+
+.metric-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
 }
 
 .metric-number {
   display: block;
-  font-size: 3rem;
-  font-weight: bold;
-  color: var(--color-primary);
+  font-size: 3.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
 }
 
 .metric-label {
   color: var(--color-text-light);
-  font-size: 0.875rem;
+  font-size: 0.925rem;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.2px;
+  font-weight: 600;
 }
 
 .pain-points {
-  background: var(--color-surface);
-  padding: 2rem;
-  border-radius: 12px;
+  background: linear-gradient(135deg, #fff9e6 0%, #ffedcc 100%);
+  padding: 2.5rem;
+  border-radius: 20px;
   margin-bottom: 3rem;
+  border: 2px solid #ffc107;
+  box-shadow: 0 8px 20px rgba(255, 193, 7, 0.15);
 }
 
 .pain-points h3 {
   color: var(--color-primary-dark);
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pain-points h3::before {
+  content: "🎯";
+  font-size: 1.5rem;
 }
 
 .pain-points ul {
   list-style: none;
+  display: grid;
+  gap: 1rem;
 }
 
 .pain-points li {
-  padding: 0.5rem 0;
-  padding-left: 1.5rem;
+  padding: 1rem;
+  padding-left: 3rem;
   position: relative;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  font-weight: 500;
+  transition: transform 0.2s ease;
+}
+
+.pain-points li:hover {
+  transform: translateX(5px);
 }
 
 .pain-points li:before {
   content: "⚠️";
   position: absolute;
-  left: 0;
+  left: 1rem;
+  font-size: 1.2rem;
 }
 
 .urgency-message {
