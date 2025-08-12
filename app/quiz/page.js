@@ -65,17 +65,11 @@ export default function QuizPage() {
   const [leadData, setLeadData] = useState({})
   const [showLeadForm, setShowLeadForm] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [showEncouragement, setShowEncouragement] = useState(false)
 
   const handleAnswer = (questionId, answer) => {
     const newAnswers = { ...answers, [questionId]: answer }
     setAnswers(newAnswers)
 
-    // Show encouragement popup for high-pain answers (4 points)
-    if (answer.points === 4) {
-      setShowEncouragement(true)
-      setTimeout(() => setShowEncouragement(false), 3000)
-    }
 
     // Move to next question or show lead form
     if (currentQuestion < quizQuestions.length - 1) {
@@ -330,12 +324,6 @@ export default function QuizPage() {
         </div>
       </div>
 
-      {showEncouragement && (
-        <div className="encouragement-popup">
-          <h3>⏰ That's a lot of wasted time!</h3>
-          <p>We can help you reclaim those hours. Keep going!</p>
-        </div>
-      )}
     </div>
   )
 }
