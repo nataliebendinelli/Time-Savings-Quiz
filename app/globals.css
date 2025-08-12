@@ -942,6 +942,163 @@ body {
   animation: fadeIn 0.6s ease;
 }
 
+/* Updated Results Layout */
+.results-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.results-left {
+  position: sticky;
+  top: 2rem;
+}
+
+.results-right {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* CTA Section Prominent Styles */
+.cta-section-prominent {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff4444 100%);
+  padding: 2.5rem;
+  border-radius: 24px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(255, 68, 68, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section-prominent::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.cta-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+  color: white;
+  animation: pulse 2s infinite;
+}
+
+.cta-section-prominent h2 {
+  color: white;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.cta-subtitle {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 1.125rem;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.btn-cta-hero {
+  background: white;
+  color: #ff4444;
+  padding: 1.25rem 3rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-cta-hero:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.btn-cta-hero .btn-arrow {
+  font-size: 1.5rem;
+  animation: slideArrow 1.5s ease-in-out infinite;
+}
+
+@keyframes slideArrow {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+}
+
+.cta-benefits {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.benefit-item {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.pain-points-compact {
+  background: rgba(255, 243, 224, 0.5);
+  padding: 1.5rem;
+  border-radius: 16px;
+  border: 1px solid #ffc107;
+}
+
+.pain-points-compact h3 {
+  color: var(--color-primary-dark);
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.pain-points-compact ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.pain-points-compact li {
+  padding: 0.75rem;
+  padding-left: 2rem;
+  position: relative;
+  background: white;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.pain-points-compact li:before {
+  content: "⚠️";
+  position: absolute;
+  left: 0.5rem;
+  font-size: 1rem;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .hero-title {
@@ -986,5 +1143,113 @@ body {
 
   .share-buttons {
     flex-direction: column;
+  }
+
+  /* Mobile Results Layout */
+  .results-container {
+    padding: 0 1rem;
+    margin: 1rem auto;
+  }
+
+  .results-layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .results-left {
+    position: static;
+  }
+
+  .personality-badge {
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .personality-badge h1 {
+    font-size: 1.75rem;
+  }
+
+  .personality-description {
+    font-size: 1rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .results-metrics {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .metric-card {
+    padding: 1rem;
+  }
+
+  .metric-number {
+    font-size: 2rem;
+  }
+
+  .metric-label {
+    font-size: 0.75rem;
+  }
+
+  .cta-section-prominent {
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .cta-section-prominent h2 {
+    font-size: 1.5rem;
+  }
+
+  .cta-subtitle {
+    font-size: 1rem;
+  }
+
+  .btn-cta-hero {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .cta-benefits {
+    gap: 0.5rem;
+  }
+
+  .benefit-item {
+    font-size: 0.875rem;
+  }
+
+  .pain-points-compact {
+    padding: 1rem;
+  }
+
+  .pain-points-compact h3 {
+    font-size: 1.1rem;
+  }
+
+  .pain-points-compact li {
+    padding: 0.5rem;
+    padding-left: 1.75rem;
+    font-size: 0.85rem;
+  }
+
+  .share-section {
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+
+  .tagline-footer {
+    padding: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .tagline-footer p:first-child {
+    font-size: 1.25rem;
+  }
+
+  .tagline-footer p:last-child {
+    font-size: 0.875rem;
   }
 }
