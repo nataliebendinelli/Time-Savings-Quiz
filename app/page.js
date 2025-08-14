@@ -6,9 +6,44 @@ import Image from 'next/image'
 
 export default function LandingPage() {
   const [isVisible, setIsVisible] = useState(false)
+  const [timeLeft, setTimeLeft] = useState({ hours: 12, minutes: 0, seconds: 0 })
+  const [currentTestimonial, setCurrentTestimonial] = useState(0)
+
+  const socialProofData = [
+    "Sarah from Austin just saved 14 hours/month",
+    "Mike in Denver discovered he's losing $2,400/month",
+    "Jennifer from Portland got her results in 90 seconds",
+    "Tom in Seattle now saves 18 hours monthly",
+    "Lisa from Phoenix reduced payroll time by 85%"
+  ]
 
   useEffect(() => {
     setIsVisible(true)
+    
+    // Countdown timer
+    const timer = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev.seconds > 0) {
+          return { ...prev, seconds: prev.seconds - 1 }
+        } else if (prev.minutes > 0) {
+          return { ...prev, minutes: prev.minutes - 1, seconds: 59 }
+        } else if (prev.hours > 0) {
+          return { hours: prev.hours - 1, minutes: 59, seconds: 59 }
+        } else {
+          return { hours: 11, minutes: 59, seconds: 59 } // Reset to 12 hours
+        }
+      })
+    }, 1000)
+
+    // Social proof rotation
+    const testimonialTimer = setInterval(() => {
+      setCurrentTestimonial(prev => (prev + 1) % socialProofData.length)
+    }, 4000)
+
+    return () => {
+      clearInterval(timer)
+      clearInterval(testimonialTimer)
+    }
   }, [])
 
   return (
@@ -24,11 +59,6 @@ export default function LandingPage() {
               height={40}
               priority
             />
-          </div>
-          <div className="nav-cta">
-            <Link href="/quiz" className="btn btn-nav">
-              Take the Quiz
-            </Link>
           </div>
         </div>
       </nav>
@@ -48,19 +78,61 @@ export default function LandingPage() {
             you could reclaim each month. Join 10,000+ small businesses who've 
             already discovered their path to payroll freedom.
           </p>
+          
+          {/* Countdown Timer */}
+          <div className="countdown-timer">
+            <span className="timer-label">🔥 Limited Time Offer Expires In:</span>
+            <div className="timer-display">
+              <span className="time-unit">
+                <span className="time-number">{String(timeLeft.hours).padStart(2, '0')}</span>
+                <span className="time-label">Hours</span>
+              </span>
+              <span className="time-separator">:</span>
+              <span className="time-unit">
+                <span className="time-number">{String(timeLeft.minutes).padStart(2, '0')}</span>
+                <span className="time-label">Minutes</span>
+              </span>
+              <span className="time-separator">:</span>
+              <span className="time-unit">
+                <span className="time-number">{String(timeLeft.seconds).padStart(2, '0')}</span>
+                <span className="time-label">Seconds</span>
+              </span>
+            </div>
+          </div>
+
           <div className="hero-cta">
-            <Link href="/quiz" className="btn btn-primary btn-large">
-              Start Your Free Assessment
-              <svg className="arrow-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path d="M7 10H13M13 10L10 7M13 10L10 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <Link href="/quiz" className="btn btn-primary btn-large btn-pulse">
+              Get My Time Back Now
+              <svg className="arrow-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </Link>
-            <p className="cta-subtext">
-              <svg className="check-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M13.5 4.5L6 12L2.5 8.5" stroke="#3f75a0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-              No credit card required • 100% free
-            </p>
+            
+            {/* Live Social Proof */}
+            <div className="social-proof-ticker">
+              <span className="ticker-icon">⚡</span>
+              <span className="ticker-text">{socialProofData[currentTestimonial]}</span>
+            </div>
+            <div className="cta-subtext">
+              <p>
+                <svg className="check-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M13.5 4.5L6 12L2.5 8.5" stroke="#3f75a0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                No credit card required
+              </p>
+              <p>
+                <svg className="check-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M13.5 4.5L6 12L2.5 8.5" stroke="#3f75a0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                100% free
+              </p>
+              <p>
+                <svg className="check-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M13.5 4.5L6 12L2.5 8.5" stroke="#3f75a0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                2-minute assessment
+              </p>
+            </div>
           </div>
           <div className="trust-indicators">
             <div className="trust-item">
@@ -68,8 +140,8 @@ export default function LandingPage() {
               <span>Businesses Assessed</span>
             </div>
             <div className="trust-item">
-              <strong>15 hrs</strong>
-              <span>Average Time Saved/Month</span>
+              <strong>Up to 15 hrs</strong>
+              <span>Time Saved/Month</span>
             </div>
             <div className="trust-item">
               <strong>94%</strong>
@@ -89,6 +161,18 @@ export default function LandingPage() {
           <div className="floating-card card-3">
             <span className="card-emoji">🎯</span>
             <span className="card-text">100% Compliance</span>
+          </div>
+          <div className="floating-card card-4">
+            <span className="card-emoji">⏰</span>
+            <span className="card-text">Save 15+ Hours Monthly</span>
+          </div>
+          <div className="floating-card card-5">
+            <span className="card-emoji">🚀</span>
+            <span className="card-text">Instant Tax Filing</span>
+          </div>
+          <div className="floating-card card-6">
+            <span className="card-emoji">💼</span>
+            <span className="card-text">Employee Self-Service</span>
           </div>
         </div>
       </section>

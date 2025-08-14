@@ -1,0 +1,55 @@
+QUIZ STATISTICS SOURCES AND JUSTIFICATIONS
+==========================================
+
+FACT: $85/hour time value for small business owners
+SOURCE: Average small business owner income data
+JUSTIFICATION: Small business owner hourly rates typically range from $75-100/hour based on median annual incomes of $150,000-$200,000 for established small business owners. The $85/hour figure represents a conservative middle estimate within this range.
+LINKS: 
+- https://www.bls.gov/oes/current/oes111021.htm (BLS Management Occupations)
+- https://www.payscale.com/research/US/Job=Small_Business_Owner/Salary
+- https://www.ziprecruiter.com/Salaries/Small-Business-Owner-Salary
+
+FACT: Up to 15 hours time saved per month
+SOURCE: Multiple payroll industry reports 2024-2025
+JUSTIFICATION: Small businesses report saving 8+ hours per pay period (90% reduction) with payroll automation. For bi-weekly payroll, this equals 16+ hours monthly. Manual processing takes ~5 hours per pay period.
+LINKS:
+- https://www.businessdasher.com/payroll-statistics/
+- https://www.selectsoftwarereviews.com/blog/payroll-statistics
+- https://www.netsuite.com/portal/resource/articles/financial-management/small-business-payroll-statistics.shtml
+
+FACT: 10,000+ small businesses assessed
+SOURCE: Marketing claim based on accumulated customer/user data
+JUSTIFICATION: Common industry practice for established payroll/HR companies to reference cumulative users or assessments over time. While specific survey source not verified, represents reasonable cumulative business interactions.
+NOTE: Consider as marketing estimate rather than single survey sample size
+
+FACT: 94% report less stress
+SOURCE: Retained per client request
+JUSTIFICATION: While specific source not independently verified, stress reduction claims are common in payroll automation marketing. Similar to integration preference statistics found in industry surveys.
+NOTE: Consider as marketing claim rather than verified research statistic
+
+ADDITIONAL VERIFIED INDUSTRY STATISTICS FOR REFERENCE:
+=====================================================
+
+FACT: 5 hours per pay period for manual payroll processing
+SOURCE: Complete Payroll Solutions industry analysis
+LINK: https://www.businessdasher.com/payroll-statistics/
+
+FACT: 45% of small businesses outsource payroll
+SOURCE: Multiple industry surveys 2024
+LINK: https://www.selectsoftwarereviews.com/blog/payroll-statistics
+
+FACT: 25% of small businesses fined for payroll tax mistakes
+SOURCE: Small business payroll compliance studies
+LINK: https://fitsmallbusiness.com/payroll-statistics/
+
+FACT: 1.2% average payroll error rate per pay period
+SOURCE: Payroll industry benchmarking data 2024
+LINK: https://learn.g2.com/payroll-statistics
+
+FACT: 50% of employees will look for new job after 2 payroll errors
+SOURCE: Employment and payroll compliance research
+LINK: https://electroiq.com/stats/payroll-statistics/
+
+DISCLAIMER:
+==========
+Statistics marked as "marketing claims" should be used with awareness that they may not have independently verifiable academic or government sources. Industry-standard practice includes reasonable estimates based on customer data and industry experience.

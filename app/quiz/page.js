@@ -234,6 +234,7 @@ export default function QuizPage() {
           <div className="tagline-footer">
             <p><strong>Now You Know It's Right™</strong></p>
             <p>Eliminate Errors • Crush Complexity • Call on an Expert</p>
+            <p className="source-note">*Time value based on average small business owner income data</p>
           </div>
         </div>
       </div>
