@@ -20,7 +20,7 @@ const quizQuestions = [
     title: "What's your biggest payroll nightmare?",
     options: [
       { text: "IRS compliance issues - penalties and audits terrify me", points: 1 },
-      { text: "Missing payroll entirely - angry employees are my worst fear", points: 1 },
+      { text: "Missing payroll entirely - angry employees are my worst nightmare", points: 1 },
       { text: "Delayed payroll - the guilt of late payments keeps me up", points: 2 },
       { text: "No major problems - I've got it under control", points: 4 }
     ]
@@ -106,27 +106,27 @@ export default function QuizPage() {
     let personality, description, ctaText, urgencyMessage, hoursSaved
 
     if (totalScore >= 18) {
-      personality = "The Payroll Pro"
-      description = "You're already optimized! Your payroll process is running smoothly with minimal time investment. Still, there might be a few final optimizations worth exploring."
-      ctaText = "See Advanced Optimization Tips"
-      urgencyMessage = "Already saving time - optimize even further"
+      personality = "The Smooth Operator"
+      description = "Your payroll runs like a well-oiled machine! You've mastered the basics. But did you know we also handle HR compliance, benefits admin, and tax planning? Let's optimize your entire back office."
+      ctaText = "Explore Our Full Service Suite"
+      urgencyMessage = "Running smooth - see what else we offer"
       hoursSaved = 2
     } else if (totalScore >= 14) {
-      personality = "The Semi-Streamlined"
-      description = "You've got some systems in place, but there's still room for improvement. You're losing 4-8 hours monthly that could be spent growing your business."
-      ctaText = "Optimize Your Payroll Process - See How"
+      personality = "The Settler"
+      description = "You're settling for 'good enough' when 'great' is within reach. You're still losing 4-8 hours monthly on payroll tasks that could be automated. Why settle when you could soar?"
+      ctaText = "Stop Settling - Start Thriving"
       urgencyMessage = "Save 4-8 hours/month with full automation"
       hoursSaved = 6
     } else if (totalScore >= 10) {
-      personality = "The Spreadsheet Struggler"
-      description = "You're fighting an uphill battle with spreadsheets and manual processes. You're losing 8-15 hours every month - that's a full workday or more! Time to upgrade your tools."
-      ctaText = "Break Free From Spreadsheet Prison - Free Demo"
+      personality = "The Barely Surviving"
+      description = "You're barely keeping your head above water! Between spreadsheets and manual calculations, you're drowning in 8-15 hours of payroll work every month. Let's throw you a lifeline."
+      ctaText = "Get Your Rescue Plan - Free Demo"
       urgencyMessage = "You're losing 8-15 hours/month to payroll"
       hoursSaved = 12
     } else {
-      personality = "The Payroll Prisoner"
-      description = "🚨 PAYROLL EMERGENCY DETECTED! You're losing 15+ hours every month to payroll chaos. That's almost two full workdays! It's time to break free from this payroll prison."
-      ctaText = "URGENT: Schedule Emergency Payroll Rescue"
+      personality = "The Chaos Commander"
+      description = "🚨 PAYROLL CHAOS DETECTED! You're commanding a sinking ship, losing 15+ hours every month to payroll disasters. Your business deserves better than this constant firefighting!"
+      ctaText = "URGENT: End the Chaos Now"
       urgencyMessage = "Critical: You're losing 15+ hours/month"
       hoursSaved = 15
     }
