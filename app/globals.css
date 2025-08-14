@@ -122,7 +122,7 @@ body {
 
 /* Pulse Animation for CTA */
 .btn-pulse {
-  animation: pulse-cta 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation: pulse-cta 2s cubic-bezier(0.4, 0, 0.6, 1) infinite, subtle-blink 4s ease-in-out infinite;
 }
 
 .btn-primary .arrow-icon {
@@ -184,6 +184,25 @@ body {
   }
   50% {
     box-shadow: 0 8px 32px rgba(255, 107, 107, 0.4), 0 0 0 8px rgba(255, 107, 107, 0.1);
+  }
+}
+
+@keyframes subtle-blink {
+  0%, 100% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  85% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  90% {
+    opacity: 0.95;
+    filter: brightness(1.08);
+  }
+  95% {
+    opacity: 1;
+    filter: brightness(1.05);
   }
 }
 
