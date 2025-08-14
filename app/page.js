@@ -79,28 +79,14 @@ export default function LandingPage() {
             already discovered their path to payroll freedom.
           </p>
           
-          {/* Countdown Timer */}
-          <div className="countdown-timer">
-            <span className="timer-label">🔥 Limited Time Offer Expires In:</span>
-            <div className="timer-display">
-              <span className="time-unit">
-                <span className="time-number">{String(timeLeft.hours).padStart(2, '0')}</span>
-                <span className="time-label">Hours</span>
-              </span>
-              <span className="time-separator">:</span>
-              <span className="time-unit">
-                <span className="time-number">{String(timeLeft.minutes).padStart(2, '0')}</span>
-                <span className="time-label">Minutes</span>
-              </span>
-              <span className="time-separator">:</span>
-              <span className="time-unit">
-                <span className="time-number">{String(timeLeft.seconds).padStart(2, '0')}</span>
-                <span className="time-label">Seconds</span>
+          <div className="hero-cta">
+            {/* Subtle countdown above button */}
+            <div className="countdown-inline">
+              <span className="countdown-text">
+                🔥 Offer expires in: {String(timeLeft.hours).padStart(2, '0')}:{String(timeLeft.minutes).padStart(2, '0')}:{String(timeLeft.seconds).padStart(2, '0')}
               </span>
             </div>
-          </div>
-
-          <div className="hero-cta">
+            
             <Link href="/quiz" className="btn btn-primary btn-large btn-pulse">
               Get My Time Back Now
               <svg className="arrow-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
