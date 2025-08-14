@@ -17,16 +17,25 @@ const quizQuestions = [
   },
   {
     id: 2,
-    title: "How much time do you (or your team) spend on payroll each pay period?",
+    title: "What's your biggest payroll nightmare (or fear)?",
     options: [
-      { text: "More than 8 hours", points: 4 },
-      { text: "4-8 hours", points: 3 },
-      { text: "2-4 hours", points: 2 },
-      { text: "Less than 2 hours", points: 1 }
+      { text: "IRS compliance issues - penalties and audits terrify me", points: 4 },
+      { text: "Missing payroll entirely - angry employees are my worst fear", points: 4 },
+      { text: "Delayed payroll - the guilt of late payments keeps me up", points: 3 },
+      { text: "No major problems - I've got it under control", points: 1 }
     ]
   },
   {
     id: 3,
+    title: "Is this a current problem?", // This will be dynamically updated
+    isDynamic: true,
+    options: [
+      { text: "Yes - it's happening right now", points: 4 },
+      { text: "No - but I worry it could happen", points: 2 }
+    ]
+  },
+  {
+    id: 4,
     title: "How often do you have to fix payroll mistakes or handle employee questions about their pay?",
     options: [
       { text: "Every pay period - it's a constant headache", points: 4 },
@@ -36,7 +45,7 @@ const quizQuestions = [
     ]
   },
   {
-    id: 4,
+    id: 5,
     title: "How do you handle payroll taxes and compliance reporting?",
     options: [
       { text: "Manually calculate and file everything myself", points: 4 },
@@ -46,7 +55,7 @@ const quizQuestions = [
     ]
   },
   {
-    id: 5,
+    id: 6,
     title: "How do your employees access their pay stubs, tax forms, and payroll information?",
     options: [
       { text: "They have to ask me for everything - I print/email manually", points: 4 },
@@ -118,10 +127,13 @@ export default function QuizPage() {
 
     // Identify main pain points based on answers
     if (answers[1]?.text.includes("Manually with spreadsheets")) painPoints.push("Manual spreadsheet chaos")
-    if (answers[2]?.text.includes("More than 8 hours")) painPoints.push("Excessive time investment each pay period")
-    if (answers[3]?.text.includes("Every pay period")) painPoints.push("Constant payroll errors and corrections")
-    if (answers[4]?.text.includes("Manually calculate")) painPoints.push("Manual tax calculations and compliance risks")
-    if (answers[5]?.text.includes("ask me for everything")) painPoints.push("No employee self-service capabilities")
+    if (answers[2]?.text.includes("IRS compliance")) painPoints.push("IRS compliance fears and audit risks")
+    if (answers[2]?.text.includes("Missing payroll")) painPoints.push("Risk of missing payroll entirely")
+    if (answers[2]?.text.includes("Delayed payroll")) painPoints.push("Payroll delays affecting employee morale")
+    if (answers[3]?.text.includes("Yes")) painPoints.push("Currently experiencing this problem")
+    if (answers[4]?.text.includes("Every pay period")) painPoints.push("Constant payroll errors and corrections")
+    if (answers[5]?.text.includes("Manually calculate")) painPoints.push("Manual tax calculations and compliance risks")
+    if (answers[6]?.text.includes("ask me for everything")) painPoints.push("No employee self-service capabilities")
 
     return {
       score: Math.round(totalScore),
@@ -295,6 +307,20 @@ export default function QuizPage() {
   }
 
   const question = quizQuestions[currentQuestion]
+  
+  // Dynamically update question 3 title based on question 2 answer
+  let dynamicTitle = question.title
+  if (question.id === 3 && answers[2]) {
+    const problemText = answers[2].text.split(' - ')[0] // Get the main part before the dash
+    dynamicTitle = (
+      <>
+        <span style={{ fontSize: '0.9em', fontWeight: 'normal', display: 'block', marginBottom: '0.5rem', color: '#666' }}>
+          You said <strong style={{ color: '#FF6B6B' }}>{problemText.toLowerCase()}</strong> was your biggest concern.
+        </span>
+        Is this a current problem you're experiencing?
+      </>
+    )
+  }
 
   return (
     <div className="quiz-container">
@@ -309,7 +335,7 @@ export default function QuizPage() {
       <div className="quiz-content">
         <div className="question-header">
           <span className="question-number">Question {currentQuestion + 1} of {quizQuestions.length}</span>
-          <h2 className="question-title">{question.title}</h2>
+          <h2 className="question-title">{question.isDynamic ? dynamicTitle : question.title}</h2>
         </div>
         
         <div className="answer-options">
