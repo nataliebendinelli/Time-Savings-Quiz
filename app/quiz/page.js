@@ -75,6 +75,7 @@ export default function QuizPage() {
   const [showLeadForm, setShowLeadForm] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [expandedChallenge, setExpandedChallenge] = useState(null)
+  const [animateIn, setAnimateIn] = useState(false)
 
   const handleAnswer = (questionId, answer) => {
     const newAnswers = { ...answers, [questionId]: answer }
@@ -238,13 +239,14 @@ export default function QuizPage() {
   const totalQuestions = answers[2]?.text.includes("No major problems") ? 5 : 6
   const progress = ((questionsAnswered + 1) / totalQuestions) * 100
 
+  useEffect(() => {
+    if (showResults) {
+      setTimeout(() => setAnimateIn(true), 100)
+    }
+  }, [showResults])
+
   if (showResults) {
     const results = calculateResults()
-    const [animateIn, setAnimateIn] = useState(false)
-    
-    useEffect(() => {
-      setTimeout(() => setAnimateIn(true), 100)
-    }, [])
     
     return (
       <div className="quiz-container results-page">
