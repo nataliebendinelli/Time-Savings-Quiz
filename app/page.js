@@ -41,7 +41,7 @@ export default function LandingPage() {
           </div>
           <h1 className="hero-title">
             Is Payroll Eating Your
-            <span className="text-accent"> Entire Friday?</span>
+            <span className="text-accent"> Entire Wednesday?</span>
           </h1>
           <p className="hero-subtitle">
             Discover your Payroll Personality and find out exactly how many hours 
@@ -170,7 +170,7 @@ export default function LandingPage() {
             <div className="step-card">
               <div className="step-number">3</div>
               <h3>Take Action</h3>
-              <p>Follow your custom roadmap to eliminate errors, crush complexity, and reclaim your Fridays</p>
+              <p>Follow your custom roadmap to eliminate errors, crush complexity, and reclaim your Wednesdays</p>
             </div>
           </div>
         </div>
@@ -184,7 +184,7 @@ export default function LandingPage() {
             <p className="testimonial-text">
               The quiz opened my eyes to how much time I was wasting. 
               We've saved 20 hours per month since switching to Accrue. 
-              Now I actually leave the office on Fridays!
+              Now I actually leave the office on Wednesdays!
             </p>
             <div className="testimonial-author">
               <strong>Sarah Mitchell</strong>
@@ -197,7 +197,7 @@ export default function LandingPage() {
       {/* CTA Section */}
       <section className="cta-section">
         <div className="cta-content">
-          <h2>Ready to Reclaim Your Fridays?</h2>
+          <h2>Ready to Reclaim Your Wednesdays?</h2>
           <p>Join thousands of businesses who've discovered their path to payroll freedom</p>
           <Link href="/quiz" className="btn btn-primary btn-large">
             Take the 2-Minute Quiz
