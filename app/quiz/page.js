@@ -240,39 +240,68 @@ export default function QuizPage() {
 
   if (showResults) {
     const results = calculateResults()
+    const [animateIn, setAnimateIn] = useState(false)
+    
+    useEffect(() => {
+      setTimeout(() => setAnimateIn(true), 100)
+    }, [])
+    
     return (
-      <div className="quiz-container">
+      <div className="quiz-container results-page">
         <nav className="quiz-nav">
           <Image src="/accrue-logo.svg" alt="Accrue" width={120} height={35} />
         </nav>
         
-        <div className="results-container">
-          <div className="personality-badge">
-            <h1>{results.personality}</h1>
-            <div className="score-badge">Score: {results.score}</div>
+        <div className={`results-container ${animateIn ? 'animate-in' : ''}`}>
+          <div className="results-header">
+            <div className="personality-badge">
+              <div className="badge-glow"></div>
+              <h1 className="personality-title">{results.personality}</h1>
+              <div className="personality-emoji">
+                {results.personality.includes('Smooth') ? '😎' : 
+                 results.personality.includes('Settler') ? '😐' :
+                 results.personality.includes('Barely') ? '😰' : '🔥'}
+              </div>
+            </div>
+            
+            <p className="personality-description">{results.description}</p>
           </div>
           
-          <p className="personality-description">{results.description}</p>
-          
           <div className="results-metrics">
-            <div className="metric-card">
-              <span className="metric-number">{results.hoursSaved}</span>
-              <span className="metric-label">Hours/Month You Could Save</span>
+            <div className="metric-card metric-time">
+              <div className="metric-icon">⏰</div>
+              <div className="metric-content">
+                <span className="metric-number counter" data-target={results.hoursSaved}>
+                  {results.hoursSaved}
+                </span>
+                <span className="metric-label">Hours/Month You Could Save</span>
+              </div>
             </div>
-            <div className="metric-card">
-              <span className="metric-number">${results.hoursSaved * 85}</span>
-              <span className="metric-label">Monthly Value of Time Saved</span>
+            <div className="metric-card metric-money">
+              <div className="metric-icon">💰</div>
+              <div className="metric-content">
+                <span className="metric-number counter" data-target={results.hoursSaved * 85}>
+                  ${results.hoursSaved * 85}
+                </span>
+                <span className="metric-label">Monthly Value of Time Saved</span>
+              </div>
             </div>
           </div>
 
-          <div className="cta-section" style={{ marginBottom: '2rem' }}>
+          <div className="action-section">
+            <div className="urgency-banner">
+              <span className="urgency-icon">⚡</span>
+              <p className="urgency-message">{results.urgencyMessage}</p>
+            </div>
             <button 
-              className="btn btn-primary btn-large"
+              className="btn btn-primary btn-large btn-results-cta"
               onClick={() => window.location.href = 'https://calendly.com/accrue-sales/demo'}
             >
               {results.ctaText}
+              <svg className="arrow-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
             </button>
-            <p className="urgency-message">{results.urgencyMessage}</p>
           </div>
 
           {results.painPoints.length > 0 && (
