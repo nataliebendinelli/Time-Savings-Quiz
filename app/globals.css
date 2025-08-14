@@ -882,32 +882,98 @@ body {
   font-size: 1.5rem;
 }
 
-.pain-points ul {
-  list-style: none;
-  display: grid;
-  gap: 1rem;
+.challenges-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
-.pain-points li {
-  padding: 1rem;
-  padding-left: 3rem;
-  position: relative;
+.challenge-item {
   background: white;
   border-radius: 12px;
+  overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.challenge-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.challenge-header {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: white;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1rem;
   font-weight: 500;
+  text-align: left;
+  transition: background 0.2s ease;
+}
+
+.challenge-header:hover {
+  background: #f8f9fa;
+}
+
+.challenge-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.challenge-icon {
+  font-size: 1.25rem;
+}
+
+.expand-icon {
+  font-size: 1.25rem;
+  color: var(--color-primary);
+  font-weight: bold;
   transition: transform 0.2s ease;
 }
 
-.pain-points li:hover {
-  transform: translateX(5px);
+.challenge-details {
+  padding: 0 1.5rem 1.5rem;
+  animation: slideDown 0.3s ease;
 }
 
-.pain-points li:before {
-  content: "⚠️";
-  position: absolute;
-  left: 1rem;
-  font-size: 1.2rem;
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.challenge-description {
+  color: #666;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.challenge-solution {
+  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 3px solid #4caf50;
+}
+
+.challenge-solution strong {
+  color: #2e7d32;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.challenge-solution p {
+  color: #2e7d32;
+  margin: 0;
 }
 
 .urgency-message {
@@ -921,9 +987,10 @@ body {
   text-align: center;
   margin-top: 3rem;
   padding: 2rem;
-  background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+  background: linear-gradient(135deg, #e8e9ea 0%, #d1d3d6 100%);
   border-radius: 16px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .share-section h4 {

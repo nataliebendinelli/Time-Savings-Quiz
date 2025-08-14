@@ -74,6 +74,7 @@ export default function QuizPage() {
   const [leadData, setLeadData] = useState({})
   const [showLeadForm, setShowLeadForm] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [expandedChallenge, setExpandedChallenge] = useState(null)
 
   const handleAnswer = (questionId, answer) => {
     const newAnswers = { ...answers, [questionId]: answer }
@@ -91,6 +92,49 @@ export default function QuizPage() {
       setTimeout(() => setCurrentQuestion(nextQuestion), 300)
     } else {
       setTimeout(() => setShowLeadForm(true), 300)
+    }
+  }
+
+  const challengeInfo = {
+    "Manual spreadsheet chaos": {
+      icon: "📊",
+      description: "Using spreadsheets for payroll is error-prone and time-consuming. Studies show manual entry has a 1% error rate per field, which compounds quickly across employees and pay periods.",
+      solution: "Automated payroll eliminates manual data entry, reducing errors by 99% and saving 10+ hours monthly."
+    },
+    "IRS compliance fears and audit risks": {
+      icon: "🚨",
+      description: "Tax penalties can cost thousands. The IRS issued $7 billion in payroll tax penalties last year. Even small mistakes can trigger audits.",
+      solution: "Our tax compliance engine automatically calculates, files, and pays all federal, state, and local taxes on time."
+    },
+    "Risk of missing payroll entirely": {
+      icon: "😰",
+      description: "Missing payroll damages employee trust and can lead to legal issues. 50% of employees will start job hunting after just one missed payment.",
+      solution: "Set it and forget it - automated payroll runs like clockwork, even when you're on vacation."
+    },
+    "Payroll delays affecting employee morale": {
+      icon: "⏰",
+      description: "Late payments hurt morale and productivity. Employees who worry about pay are 48% less productive at work.",
+      solution: "Guarantee on-time payments every time with automated scheduling and reminders."
+    },
+    "Currently experiencing this problem": {
+      icon: "🔥",
+      description: "Active payroll problems compound over time. The longer you wait, the more it costs in time, money, and stress.",
+      solution: "Don't let this problem get worse. We can have you set up and running smoothly in less than 15 minutes."
+    },
+    "Constant payroll errors and corrections": {
+      icon: "❌",
+      description: "Each payroll correction takes 30-60 minutes to fix. Multiply that by every pay period and you're losing days of productivity.",
+      solution: "Automated validation catches errors before they happen, and employee self-service reduces correction requests by 75%."
+    },
+    "Manual tax calculations and compliance risks": {
+      icon: "🧮",
+      description: "Tax laws change constantly - there were 500+ payroll tax updates last year alone. Manual calculations can't keep up.",
+      solution: "Our system updates automatically with every tax law change, ensuring you're always compliant."
+    },
+    "No employee self-service capabilities": {
+      icon: "📱",
+      description: "Without self-service, you become the help desk. The average business spends 5 hours monthly answering employee payroll questions.",
+      solution: "Give employees 24/7 access to pay stubs, W-2s, and time-off balances through our mobile app."
     }
   }
 
@@ -234,11 +278,36 @@ export default function QuizPage() {
           {results.painPoints.length > 0 && (
             <div className="pain-points">
               <h3>Your Biggest Challenges:</h3>
-              <ul>
-                {results.painPoints.map((point, idx) => (
-                  <li key={idx}>{point}</li>
-                ))}
-              </ul>
+              <div className="challenges-list">
+                {results.painPoints.map((point, idx) => {
+                  const info = challengeInfo[point]
+                  const isExpanded = expandedChallenge === idx
+                  
+                  return (
+                    <div key={idx} className="challenge-item">
+                      <button 
+                        className="challenge-header"
+                        onClick={() => setExpandedChallenge(isExpanded ? null : idx)}
+                      >
+                        <span className="challenge-title">
+                          <span className="challenge-icon">{info?.icon || "•"}</span>
+                          {point}
+                        </span>
+                        <span className="expand-icon">{isExpanded ? "−" : "+"}</span>
+                      </button>
+                      {isExpanded && info && (
+                        <div className="challenge-details">
+                          <p className="challenge-description">{info.description}</p>
+                          <div className="challenge-solution">
+                            <strong>✅ How we solve this:</strong>
+                            <p>{info.solution}</p>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )
+                })}
+              </div>
             </div>
           )}
 
@@ -324,9 +393,9 @@ export default function QuizPage() {
     dynamicTitle = (
       <>
         <span style={{ fontSize: '0.9em', fontWeight: 'normal', display: 'block', marginBottom: '0.5rem', color: '#666' }}>
-          You said <strong style={{ color: '#FF6B6B' }}>{problemText.toLowerCase()}</strong> was your biggest nightmare.
+          You said <strong style={{ color: '#FF6B6B' }}>{problemText.toLowerCase()}</strong> was your biggest concern.
         </span>
-        Is this nightmare happening right now?
+        Is this happening right now?
       </>
     )
   }
