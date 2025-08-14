@@ -9,20 +9,20 @@ const quizQuestions = [
     id: 1,
     title: "How do you currently handle payroll for your business?",
     options: [
-      { text: "Manually with spreadsheets and calculators", points: 4 },
-      { text: "Basic payroll software but lots of manual data entry", points: 3 },
-      { text: "Partially automated system with some manual steps", points: 2 },
-      { text: "Fully automated payroll system", points: 1 }
+      { text: "Manually with spreadsheets and calculators", points: 1 },
+      { text: "Basic payroll software but lots of manual data entry", points: 2 },
+      { text: "Partially automated system with some manual steps", points: 3 },
+      { text: "Fully automated payroll system", points: 4 }
     ]
   },
   {
     id: 2,
-    title: "What's your biggest payroll nightmare (or fear)?",
+    title: "What's your biggest payroll nightmare?",
     options: [
-      { text: "IRS compliance issues - penalties and audits terrify me", points: 4 },
-      { text: "Missing payroll entirely - angry employees are my worst fear", points: 4 },
-      { text: "Delayed payroll - the guilt of late payments keeps me up", points: 3 },
-      { text: "No major problems - I've got it under control", points: 1 }
+      { text: "IRS compliance issues - penalties and audits terrify me", points: 1 },
+      { text: "Missing payroll entirely - angry employees are my worst fear", points: 1 },
+      { text: "Delayed payroll - the guilt of late payments keeps me up", points: 2 },
+      { text: "No major problems - I've got it under control", points: 4 }
     ]
   },
   {
@@ -30,38 +30,38 @@ const quizQuestions = [
     title: "Is this a current problem?", // This will be dynamically updated
     isDynamic: true,
     options: [
-      { text: "Yes - it's happening right now", points: 4 },
-      { text: "No - but I worry it could happen", points: 2 }
+      { text: "Yes - it's happening right now", points: 1 },
+      { text: "No - but I worry it could happen", points: 3 }
     ]
   },
   {
     id: 4,
-    title: "How often do you have to fix payroll mistakes or handle employee questions about their pay?",
+    title: "How often do payroll mistakes happen?",
     options: [
-      { text: "Every pay period - it's a constant headache", points: 4 },
-      { text: "A few times per month", points: 3 },
-      { text: "Occasionally, maybe once a month", points: 2 },
-      { text: "Rarely, our payroll is usually accurate", points: 1 }
+      { text: "Every single payroll - something's always wrong", points: 1 },
+      { text: "Most payrolls have at least one issue", points: 2 },
+      { text: "Maybe once a month", points: 3 },
+      { text: "Rarely - we run pretty smooth", points: 4 }
     ]
   },
   {
     id: 5,
-    title: "How do you handle payroll taxes and compliance reporting?",
+    title: "How do you handle payroll taxes?",
     options: [
-      { text: "Manually calculate and file everything myself", points: 4 },
-      { text: "Use basic software but still need to double-check everything", points: 3 },
-      { text: "Mostly automated but requires some manual oversight", points: 2 },
-      { text: "Fully automated with automatic tax filing and compliance", points: 1 }
+      { text: "I do it all manually", points: 1 },
+      { text: "Software helps, but I still worry", points: 2 },
+      { text: "Mostly automated, some checking", points: 3 },
+      { text: "Fully automated - set and forget", points: 4 }
     ]
   },
   {
     id: 6,
     title: "How do your employees access their pay stubs, tax forms, and payroll information?",
     options: [
-      { text: "They have to ask me for everything - I print/email manually", points: 4 },
-      { text: "I email them documents each pay period", points: 3 },
-      { text: "They can access some things online but often need my help", points: 2 },
-      { text: "They have full self-service access to everything they need", points: 1 }
+      { text: "They have to ask me for everything - I print/email manually", points: 1 },
+      { text: "I email them documents each pay period", points: 2 },
+      { text: "They can access some things online but often need my help", points: 3 },
+      { text: "They have full self-service access to everything they need", points: 4 }
     ]
   }
 ]
@@ -79,10 +79,16 @@ export default function QuizPage() {
     const newAnswers = { ...answers, [questionId]: answer }
     setAnswers(newAnswers)
 
+    // Skip question 3 if they selected "No major problems" in question 2
+    let nextQuestion = currentQuestion + 1
+    if (questionId === 2 && answer.text.includes("No major problems")) {
+      // Skip the "Is this a current problem?" question
+      nextQuestion = currentQuestion + 2
+    }
 
     // Move to next question or show lead form
-    if (currentQuestion < quizQuestions.length - 1) {
-      setTimeout(() => setCurrentQuestion(currentQuestion + 1), 300)
+    if (nextQuestion <= quizQuestions.length - 1) {
+      setTimeout(() => setCurrentQuestion(nextQuestion), 300)
     } else {
       setTimeout(() => setShowLeadForm(true), 300)
     }
@@ -96,33 +102,33 @@ export default function QuizPage() {
       totalScore += answer.points
     })
 
-    // Determine personality and messaging based on new scoring
+    // Determine personality and messaging based on reversed scoring (higher = better)
     let personality, description, ctaText, urgencyMessage, hoursSaved
 
-    if (totalScore >= 16) {
-      personality = "The Payroll Prisoner"
-      description = "🚨 PAYROLL EMERGENCY DETECTED! You're losing 15+ hours every month to payroll chaos. That's almost two full workdays! It's time to break free from this payroll prison."
-      ctaText = "URGENT: Schedule Emergency Payroll Rescue"
-      urgencyMessage = "Critical: You're losing 15+ hours/month"
-      hoursSaved = 15
-    } else if (totalScore >= 12) {
-      personality = "The Spreadsheet Struggler"
-      description = "You're fighting an uphill battle with spreadsheets and manual processes. You're losing 8-15 hours every month - that's a full workday or more! Time to upgrade your tools."
-      ctaText = "Break Free From Spreadsheet Prison - Free Demo"
-      urgencyMessage = "You're losing 8-15 hours/month to payroll"
-      hoursSaved = 12
-    } else if (totalScore >= 8) {
-      personality = "The Semi-Streamlined"
-      description = "You've got some systems in place, but there's still room for improvement. You're losing 4-8 hours monthly that could be spent growing your business."
-      ctaText = "Optimize Your Payroll Process - See How"
-      urgencyMessage = "Save 4-8 hours/month with full automation"
-      hoursSaved = 6
-    } else {
+    if (totalScore >= 18) {
       personality = "The Payroll Pro"
       description = "You're already optimized! Your payroll process is running smoothly with minimal time investment. Still, there might be a few final optimizations worth exploring."
       ctaText = "See Advanced Optimization Tips"
       urgencyMessage = "Already saving time - optimize even further"
       hoursSaved = 2
+    } else if (totalScore >= 14) {
+      personality = "The Semi-Streamlined"
+      description = "You've got some systems in place, but there's still room for improvement. You're losing 4-8 hours monthly that could be spent growing your business."
+      ctaText = "Optimize Your Payroll Process - See How"
+      urgencyMessage = "Save 4-8 hours/month with full automation"
+      hoursSaved = 6
+    } else if (totalScore >= 10) {
+      personality = "The Spreadsheet Struggler"
+      description = "You're fighting an uphill battle with spreadsheets and manual processes. You're losing 8-15 hours every month - that's a full workday or more! Time to upgrade your tools."
+      ctaText = "Break Free From Spreadsheet Prison - Free Demo"
+      urgencyMessage = "You're losing 8-15 hours/month to payroll"
+      hoursSaved = 12
+    } else {
+      personality = "The Payroll Prisoner"
+      description = "🚨 PAYROLL EMERGENCY DETECTED! You're losing 15+ hours every month to payroll chaos. That's almost two full workdays! It's time to break free from this payroll prison."
+      ctaText = "URGENT: Schedule Emergency Payroll Rescue"
+      urgencyMessage = "Critical: You're losing 15+ hours/month"
+      hoursSaved = 15
     }
 
     // Identify main pain points based on answers
@@ -183,7 +189,10 @@ export default function QuizPage() {
     }
   }
 
-  const progress = ((currentQuestion + 1) / quizQuestions.length) * 100
+  // Calculate actual questions answered (accounting for skipped question)
+  const questionsAnswered = Object.keys(answers).length
+  const totalQuestions = answers[2]?.text.includes("No major problems") ? 5 : 6
+  const progress = ((questionsAnswered + 1) / totalQuestions) * 100
 
   if (showResults) {
     const results = calculateResults()
@@ -315,9 +324,9 @@ export default function QuizPage() {
     dynamicTitle = (
       <>
         <span style={{ fontSize: '0.9em', fontWeight: 'normal', display: 'block', marginBottom: '0.5rem', color: '#666' }}>
-          You said <strong style={{ color: '#FF6B6B' }}>{problemText.toLowerCase()}</strong> was your biggest concern.
+          You said <strong style={{ color: '#FF6B6B' }}>{problemText.toLowerCase()}</strong> was your biggest nightmare.
         </span>
-        Is this a current problem you're experiencing?
+        Is this nightmare happening right now?
       </>
     )
   }
@@ -334,7 +343,7 @@ export default function QuizPage() {
       
       <div className="quiz-content">
         <div className="question-header">
-          <span className="question-number">Question {currentQuestion + 1} of {quizQuestions.length}</span>
+          <span className="question-number">Question {questionsAnswered + 1} of {totalQuestions}</span>
           <h2 className="question-title">{question.isDynamic ? dynamicTitle : question.title}</h2>
         </div>
         
